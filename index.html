@@ -29,8 +29,10 @@
         /* The container around and entire player-hand for positioning the hand on the screen */
         .hand-container {
             position: relative;
-            margin: auto;
-            top: 200px;
+            /* Offset from bottom */
+            bottom: 40px;
+            /* The card-t doesn't show up nicely within the hand-container, therefore the height and width
+            are dynamically calculated */
             height: calc(var(--card-width) * var(--card-height-ratio));
             width: calc((var(--card-spacing) * var(--nr-of-cards-on-hand)) + (var(--card-width) - var(--card-spacing)));
             /* Debug purposes */
@@ -120,7 +122,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="w3-display-bottommiddle">
         <div id="hand-container" class="hand-container">
             <div class="card-container">
                 <card-t class="card" cid="3h"></card-t>
