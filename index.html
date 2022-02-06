@@ -10,11 +10,20 @@
     <title>Document</title>
     <style>
         :root {
-            --card-width: 200px;
-            --card-height-ratio: 1.4;
-            --card-spacing: 40px;
-            --card-selected-raise: 30px;
+            /* Adjust card size */
+            --card-width: 150px;
+            /* Adjust gap between cards */
+            --card-spacing-ratio: 3.75;
+            /* Adjust for height of selected card */
+            --card-selected-raise-ratio: 2.2;
+            /* Updated by JS depending on how many cards are on hand */
             --nr-of-cards-on-hand: 13;
+
+
+            /* Calculation of containers, generally don't touch */
+            --card-height-ratio: 1.43;
+            --card-spacing: calc(var(--card-width) / var(--card-spacing-ratio));
+            --card-selected-raise: calc(var(--card-width) / var(--card-selected-raise-ratio));
         }
 
         /* The container around and entire player-hand for positioning the hand on the screen */
