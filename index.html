@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="lib/elements.cardmeister.full.js"></script>
+    <title>Document</title>
+    <style>
+        :root {
+            --card-width: 200px;
+            --card-height-ratio: 1.4;
+            --card-spacing: 40px;
+            --card-selected-raise: 30px;
+            --nr-of-cards-on-hand: 13;
+        }
+
+        /* The container around and entire player-hand for positioning the hand on the screen */
+        .hand-container {
+            position: relative;
+            margin: auto;
+            top: 200px;
+            height: calc(var(--card-width) * var(--card-height-ratio));
+            width: calc((var(--card-spacing) * var(--nr-of-cards-on-hand)) + (var(--card-width) - var(--card-spacing)));
+            /* Debug purposes */
+            border: 3px solid rgb(255, 0, 0);
+        }
+
+        /* The container around "card-t" for correct spacing */
+        .card-container {
+            position: absolute;
+            width: var(--card-width);
+            /* Debug purposes */
+            /* border: 2px solid orange; */
+            bottom: 0;
+            left: 0;
+        }
+
+        /* nth-child's specify how to layer the cards with the z-index */
+        .card-container:nth-child(1) {
+            z-index: 1;
+        }
+
+        .card-container:nth-child(2) {
+            z-index: 2;
+            left: var(--card-spacing);
+        }
+
+        .card-container:nth-child(3) {
+            z-index: 3;
+            left: calc(var(--card-spacing) * 2);
+        }
+
+        .card-container:nth-child(4) {
+            z-index: 4;
+            left: calc(var(--card-spacing) * 3);
+        }
+
+        .card-container:nth-child(5) {
+            z-index: 5;
+            left: calc(var(--card-spacing) * 4);
+        }
+
+        .card-container:nth-child(6) {
+            z-index: 6;
+            left: calc(var(--card-spacing) * 5);
+        }
+
+        .card-container:nth-child(7) {
+            z-index: 7;
+            left: calc(var(--card-spacing) * 6);
+        }
+
+        .card-container:nth-child(8) {
+            z-index: 8;
+            left: calc(var(--card-spacing) * 7);
+        }
+
+        .card-container:nth-child(9) {
+            z-index: 9;
+            left: calc(var(--card-spacing) * 8);
+        }
+
+        .card-container:nth-child(10) {
+            z-index: 10;
+            left: calc(var(--card-spacing) * 9);
+        }
+
+        .card-container:nth-child(11) {
+            z-index: 11;
+            left: calc(var(--card-spacing) * 10);
+        }
+
+        .card-container:nth-child(12) {
+            z-index: 12;
+            left: calc(var(--card-spacing) * 11);
+        }
+
+        .card-container:nth-child(13) {
+            z-index: 13;
+            left: calc(var(--card-spacing) * 12);
+        }
+
+        /* The class applied directly to "card-t" */
+        .card {
+            /* border: 2px solid green; */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="hand-container" class="hand-container">
+            <div class="card-container">
+                <card-t class="card" cid="3h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="4h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="5h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="6h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="7h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="8h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="9h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="10h"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="Jh"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="Qh"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="KH"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="Ah"></card-t>
+            </div>
+
+            <div class="card-container">
+                <card-t class="card" cid="2h"></card-t>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
