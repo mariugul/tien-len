@@ -18,7 +18,6 @@ function clickCard() {
     lowerCard(this);
     deselectCard(CARD_ID);
   }
-  console.log(selectedCards);
 }
 
 // Raises the card using a global CSS variable
