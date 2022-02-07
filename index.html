@@ -6,180 +6,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/cards.css">
+    <link rel="stylesheet" href="/css/player-hand.css">
+    <link rel="stylesheet" href="/css/opponent-hand.css">
+    <link rel="stylesheet" href="/css/card-on-table.css">
     <script src="lib/elements.cardmeister.full.js"></script>
+    <script src="js/cards_frontend.js" defer></script>
     <title>Document</title>
     <style>
-        :root {
-            /* Adjust card size */
-            --card-width: 150px;
-            /* Adjust gap between cards */
-            --card-spacing-ratio: 3.75;
-            /* Adjust for height of selected card */
-            --card-selected-raise-ratio: 2.2;
-            /* Updated by JS depending on how many cards are on hand */
-            --nr-of-cards-on-hand: 13;
-
-
-            /* Calculation of containers, generally don't touch */
-            --card-height-ratio: 1.43;
-            --card-spacing: calc(var(--card-width) / var(--card-spacing-ratio));
-            --card-selected-raise: calc(var(--card-width) / var(--card-selected-raise-ratio));
-        }
-
-        body {
-            /* background-image: url("/images/table.jpg"); */
-            background-size: cover;
-            background-color: rgb(22, 76, 22);
-        }
-
-        /* The container around and entire player-hand for positioning the hand on the screen */
-        .hand-container {
-            position: relative;
-            /* Offset from bottom */
-            bottom: 40px;
-            /* The card-t doesn't show up nicely within the hand-container, therefore the height and width
-            are dynamically calculated */
-            height: calc(var(--card-width) * var(--card-height-ratio));
-            width: calc((var(--card-spacing) * var(--nr-of-cards-on-hand)) + (var(--card-width) - var(--card-spacing)));
-            /* Debug purposes */
-            border: 3px solid rgb(255, 0, 0);
-        }
-
-        /* The container around "card-t" for correct spacing */
-        .card-container {
-            position: absolute;
-            width: var(--card-width);
-            /* Debug purposes */
-            /* border: 2px solid orange; */
-            bottom: 0;
-            left: 0;
-        }
-
-        /* nth-child's specify how to layer the cards with the z-index */
-        .card-container:nth-child(1) {
-            z-index: 1;
-        }
-
-        .card-container:nth-child(2) {
-            z-index: 2;
-            left: var(--card-spacing);
-        }
-
-        .card-container:nth-child(3) {
-            z-index: 3;
-            left: calc(var(--card-spacing) * 2);
-        }
-
-        .card-container:nth-child(4) {
-            z-index: 4;
-            left: calc(var(--card-spacing) * 3);
-        }
-
-        .card-container:nth-child(5) {
-            z-index: 5;
-            left: calc(var(--card-spacing) * 4);
-        }
-
-        .card-container:nth-child(6) {
-            z-index: 6;
-            left: calc(var(--card-spacing) * 5);
-        }
-
-        .card-container:nth-child(7) {
-            z-index: 7;
-            left: calc(var(--card-spacing) * 6);
-        }
-
-        .card-container:nth-child(8) {
-            z-index: 8;
-            left: calc(var(--card-spacing) * 7);
-        }
-
-        .card-container:nth-child(9) {
-            z-index: 9;
-            left: calc(var(--card-spacing) * 8);
-        }
-
-        .card-container:nth-child(10) {
-            z-index: 10;
-            left: calc(var(--card-spacing) * 9);
-        }
-
-        .card-container:nth-child(11) {
-            z-index: 11;
-            left: calc(var(--card-spacing) * 10);
-        }
-
-        .card-container:nth-child(12) {
-            z-index: 12;
-            left: calc(var(--card-spacing) * 11);
-        }
-
-        .card-container:nth-child(13) {
-            z-index: 13;
-            left: calc(var(--card-spacing) * 12);
-        }
-
-        /* The class applied directly to "card-t" */
-        .card {
-            /* border: 2px solid green; */
-        }
+        
     </style>
 </head>
 
 <body>
+    <!-- Player Hand -->
     <div class="w3-display-bottommiddle">
-        <div id="hand-container" class="hand-container">
-            <div class="card-container">
-                <card-t class="card" cid="3h"></card-t>
+        <div class="player-hand-container" id="player-hand-container">
+
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="3h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="4h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="4h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="5h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="5h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="6h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="2s"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="7h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="7h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="8h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="8h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="9h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="9h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="10h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="10h"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="Jh"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="Jh"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="Qh"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="Qh"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="KH"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="KH"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="Ah"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="Ah"></card-t>
             </div>
 
-            <div class="card-container">
-                <card-t class="card" cid="2h"></card-t>
+            <div class="player-card-container w3-ripple">
+                <card-t class="player-card" cid="2h"></card-t>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards on table -->
+    <div class="w3-display-middle">
+        <div class="cards-on-table-container" id="cards-on-table-container">
+            <!-- Only add w3-ripple to the deck when a deck is showing -->
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
+            </div>
+            <div class="table-card-container">
+                <card-t class="table-card" cid="00"></card-t>
             </div>
         </div>
     </div>

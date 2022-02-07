@@ -1,0 +1,93 @@
+/* The container around cards in play for positioning the hand on the screen */
+.opponent-hand-container {
+    position: relative;
+    /* The card-t doesn't show up nicely within the container, therefore the height and width are dynamically calculated */
+    height: calc(var(--card-on-table-width) * var(--card-height-ratio));
+    width: calc(
+      (var(--card-on-table-spacing) * var(--nr-of-cards-on-table)) +
+        (var(--card-on-table-width) - var(--card-on-table-spacing))
+    );
+    /* Debug purposes */
+    /* border: 3px solid rgb(255, 0, 0); */
+  }
+  
+  /* The container around "card-t" for correct spacing */
+  .opponent-card-container {
+    position: absolute;
+    width: var(--card-on-table-width);
+    /* Debug purposes */
+    /* border: 2px solid orange; */
+    bottom: 0;
+    left: 0;
+  }
+  
+  /* nth-child's specify how to layer the cards with the z-index */
+  .opponent-card-container:nth-child(1) {
+    z-index: 1;
+  }
+  
+  .opponent-card-container:nth-child(2) {
+    z-index: 2;
+    left: var(--card-on-table-spacing);
+  }
+  
+  .opponent-card-container:nth-child(3) {
+    z-index: 3;
+    left: calc(var(--card-on-table-spacing) * 2);
+  }
+  
+  .opponent-card-container:nth-child(4) {
+    z-index: 4;
+    left: calc(var(--card-on-table-spacing) * 3);
+  }
+  
+  .opponent-card-container:nth-child(5) {
+    z-index: 5;
+    left: calc(var(--card-on-table-spacing) * 4);
+  }
+  
+  .opponent-card-container:nth-child(6) {
+    z-index: 6;
+    left: calc(var(--card-on-table-spacing) * 5);
+  }
+  
+  .opponent-card-container:nth-child(7) {
+    z-index: 7;
+    left: calc(var(--card-on-table-spacing) * 6);
+  }
+  
+  .opponent-card-container:nth-child(8) {
+    z-index: 8;
+    left: calc(var(--card-on-table-spacing) * 7);
+  }
+  
+  .opponent-card-container:nth-child(9) {
+    z-index: 9;
+    left: calc(var(--card-on-table-spacing) * 8);
+  }
+  
+  .opponent-card-container:nth-child(10) {
+    z-index: 10;
+    left: calc(var(--card-on-table-spacing) * 9);
+  }
+  
+  .opponent-card-container:nth-child(11) {
+    z-index: 11;
+    left: calc(var(--card-on-table-spacing) * 10);
+  }
+  
+  .opponent-card-container:nth-child(12) {
+    z-index: 12;
+    left: calc(var(--card-on-table-spacing) * 11);
+  }
+  
+  .opponent-card-container:nth-child(13) {
+    z-index: 13;
+    left: calc(var(--card-on-table-spacing) * 12);
+  }
+  
+  /* The class applied directly to "card-t" */
+  .opponent-card {
+    /* border: 2px solid yellow; */
+  }
+  
