@@ -1,23 +1,88 @@
 // Globals
+// ---------------------------------------------------------------------------
 const MAX_CARDS_ON_HAND = 13;
 const MIN_CARDS_ON_HAND = 0;
-const selectedCards = []; // Saved as card id e.g. "2h", "KS"
+const mockCards = ["As", "Ah", "Jd", "3s", "Kc", "9h", "4d", "8s", "2s", "10c"];
+const selectedCards = []; // Saved as "2h", "KS" etc.
+const playerHandContainer = document.getElementById("player-hand-container");
 
+function getPlayerCardContainers() {
+  return playerHandContainer.getElementsByClassName("player-card-container");
+}
+
+function getPlayerCardElements() {
+  return playerHandContainer.getElementsByTagName("card-t");
+}
+
+// Public API
+// ---------------------------------------------------------------------------
 /**
- * Raises or lowers the player card on selection
+ * Gets all the cards that are currently in the the player's hand
+ * @returns {Array} Cards in the form of card id's: "Ks", "Ah" etc.
  */
-function clickCard() {
-  const CARD_HEIGHT = this.computedStyleMap().get("bottom").value;
-  const LOWERED = 0;
-  const CARD_ID = this.childNodes[1].cid;
+function getCardsOnHand() {
+  const cardsOnHand = []; // Saved as card id
 
-  if (CARD_HEIGHT === LOWERED) {
-    raiseCard(this);
-    selectCard(CARD_ID);
-  } else {
-    lowerCard(this);
-    deselectCard(CARD_ID);
+  for (let i = 0; i < getPlayerCardElements().length; i++) {
+    cardsOnHand.push(getPlayerCardElements().item(i).cid);
   }
+
+  return cardsOnHand;
+}
+
+function getNrOfCardsOnHand() {
+  return getPlayerCardContainers().length;
+}
+
+// Helper functions (local)
+// ---------------------------------------------------------------------------
+function updatetNrOfCardsOnHand() {
+  const root = document.documentElement;
+  root.style.setProperty("--nr-of-cards-on-hand", getNrOfCardsOnHand());
+}
+
+function removeCardFromHand(cardContainer) {
+  cardContainer.remove();
+}
+
+function removeSelectedCardsFromHand() {
+  for (let i = 0; i < selectedCards.length; i++) {
+    for (let j = 0; j < getPlayerCardElements().length; j++) {
+      if (getPlayerCardElements()[j].cid === selectedCards[i]) {
+        removeCardFromHand(getPlayerCardElements()[j].parentElement);
+      }
+    }
+  }
+}
+
+function removeAllCardsFromHand() {
+  while (playerHandContainer.firstChild) {
+    playerHandContainer.removeChild(playerHandContainer.firstChild);
+  }
+}
+
+// Clears the array of selected cards
+function clearSelectedCards() {
+  selectedCards.length = 0;
+}
+
+function addCardToHand(cardId) {
+  console.log(cardId);
+
+  const cardContainer = document.createElement("div");
+  cardContainer.addEventListener("click", clickCard);
+  cardContainer.className =
+    "player-card-container w3-ripple w3-hover-shadow w3-round-large";
+  cardContainer.innerHTML = `<card-t class="player-card" cid="${cardId}"></card-t>`;
+  playerHandContainer.appendChild(cardContainer);
+}
+
+function addCardsToHand(cards) {
+  if (cards.length + getCardsOnHand() >= 13) return; // Don't allow more than 13 cards on hand
+
+  cards.forEach((cid) => {
+    addCardToHand(cid);
+  });
 }
 
 // Raises the card using a global CSS variable
@@ -44,14 +109,72 @@ function deselectCard(cardId) {
   }
 }
 
-function removeCard(card) {}
-
-function addCard(card) {}
-
-// Get all player card container elements
-const playerCards = document.getElementsByClassName("player-card-container");
-
-// Assign selectCard() event on click to all player cards
-for (let i = 0; i < playerCards.length; i++) {
-  playerCards[i].addEventListener("click", clickCard);
+function addCardShadow(cardContainer) {
+  cardContainer.style.boxShadow =
+    "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
 }
+
+function removeCardShadow(cardContainer) {
+  cardContainer.style.boxShadow = null;
+}
+
+function cardsSelected() {
+  return selectedCards.length === 0 ? false : true;
+}
+
+// Event Handlers
+// ---------------------------------------------------------------------------
+function dealCards() {
+  removeAllCardsFromHand();
+  updatetNrOfCardsOnHand();
+  addCardsToHand(mockCards);
+  updatetNrOfCardsOnHand();
+}
+
+function playSelectedCards() {
+  if (!cardsSelected()) return;
+
+  removeSelectedCardsFromHand();
+  clearSelectedCards();
+  updatetNrOfCardsOnHand();
+
+  console.log(
+    document.documentElement.style.getProperty("--nr-of-cards-on-hand")
+  );
+}
+
+/**
+ * Raises or lowers the player card on selection
+ */
+function clickCard() {
+  const CARD_HEIGHT = this.computedStyleMap().get("bottom").value;
+  const LOWERED = 0;
+  const CARD_ID = this.getElementsByTagName("card-t").item(0).cid;
+
+  if (CARD_HEIGHT === LOWERED) {
+    raiseCard(this);
+    selectCard(CARD_ID);
+    addCardShadow(this);
+  } else {
+    lowerCard(this);
+    deselectCard(CARD_ID);
+    removeCardShadow(this);
+  }
+}
+
+// Event Listeners
+// ---------------------------------------------------------------------------
+
+(function addClickCardListener() {
+  for (let i = 0; i < getPlayerCardContainers().length; i++) {
+    getPlayerCardContainers()[i].addEventListener("click", clickCard);
+  }
+})();
+
+// Assign play button function
+document
+  .getElementById("play-button")
+  .addEventListener("click", playSelectedCards);
+
+// Assign deal button function
+document.getElementById("deal-button").addEventListener("click", dealCards);
