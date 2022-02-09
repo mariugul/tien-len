@@ -67,8 +67,6 @@ function clearSelectedCards() {
 }
 
 function addCardToHand(cardId) {
-  console.log(cardId);
-
   const cardContainer = document.createElement("div");
   cardContainer.addEventListener("click", clickCard);
   cardContainer.className =
@@ -124,9 +122,12 @@ function cardsSelected() {
 
 // Event Handlers
 // ---------------------------------------------------------------------------
+/**
+ * Remove cards left on hand (if any) and add new cards
+ */
 function dealCards() {
+  clearSelectedCards();
   removeAllCardsFromHand();
-  updatetNrOfCardsOnHand();
   addCardsToHand(mockCards);
   updatetNrOfCardsOnHand();
 }
