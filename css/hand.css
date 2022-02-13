@@ -54,7 +54,7 @@
 .card {
     position: absolute;
     width: var(--card-width);
-    cursor: pointer;
+    /* cursor: pointer; */
     
     /* Initial value for all cards so they can be raised by clicking */
     bottom: 0; 

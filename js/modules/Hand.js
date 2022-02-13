@@ -34,7 +34,15 @@ export class Hand {
 
         cards.forEach((cid) => {
             const card = document.createElement("card-t");
-            card.className = `card w3-ripple w3-hover-shadow w3-round-large`;
+
+            // No click handler passed in means no selection of cards
+            if (eventHandler === null) {
+                card.className = `card w3-round-large`;
+            } else {
+                card.className = `card w3-ripple w3-hover-shadow w3-round-large`;
+                card.style.cursor = "pointer";
+            }
+            
             card.setAttribute("cid", cid);
             card.addEventListener("click", eventHandler, false);
             this.container.appendChild(card);
