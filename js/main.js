@@ -1,11 +1,16 @@
 import { PlayerHand } from "./modules/PlayerHand.js";
-import { OpponentHand } from "./modules/OpponentHand.js";
-import { TableCards } from "./modules/TableCards.js";
 
+// Constants
 const mockCards = ["3h", "4c", "5d", "6s", "7h", "8c", "9d", "10s", "Jh", "Qc", "Kd", "As", "2h"];
 const mockBacksideCards = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
+const LEFT = -90; // Rotation degrees
+const RIGHT = 90;
 
-let player = new PlayerHand("player-hand-container", mockCards, clickCard);
+const player = new PlayerHand("player-hand-container", mockCards, clickCard);
+player.size(0.8);
+
+const opponent1 = new PlayerHand("opponent1-hand-container", mockBacksideCards);
+opponent1.size(2/3);
 
 /**
  * Remove cards left on hand (if any) and add new cards
