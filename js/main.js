@@ -5,8 +5,7 @@ import { TableCards } from "./modules/TableCards.js";
 const mockCards = ["3h", "4c", "5d", "6s", "7h", "8c", "9d", "10s", "Jh", "Qc", "Kd", "As", "2h"];
 const mockBacksideCards = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
-let player = new PlayerHand("player-hand-container", mockCards);
-
+let player = new PlayerHand("player-hand-container", mockCards, clickCard);
 
 /**
  * Remove cards left on hand (if any) and add new cards
@@ -14,8 +13,7 @@ let player = new PlayerHand("player-hand-container", mockCards);
 function dealCards() {
     player.clearSelectedCards();
     player.removeAllCards();
-    player.addCards(mockCards);
-    player.updateNrOfCards();
+    player.addCards(mockCards, clickCard);
 }
 
 /**
@@ -26,8 +24,24 @@ function playSelectedCards() {
     if (!player.cardsSelected()) return;
 
     player.removeSelectedCards();
-    player.clearSelectedCards();
-    player.updateNrOfCards();
+}
+
+/**
+ * Event handler for clicks on player-cards
+ */
+function clickCard() {
+    const cardHeight = this.computedStyleMap().get("bottom").value;
+    const LOWERED = 0;
+
+    if (cardHeight === LOWERED) {
+        player.raiseCard(this);
+        player.selectCard(this.cid);
+        player.addCardShadow(this);
+    } else {
+        player.lowerCard(this);
+        player.deselectCard(this.cid);
+        player.removeCardShadow(this);
+    }
 }
 
 // Assign play button function

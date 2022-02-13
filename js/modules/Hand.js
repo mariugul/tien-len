@@ -29,15 +29,18 @@ export class Hand {
      * @param {Array} cards Array of card ID's (cid) in the form of "As", "Kh", "2c" etc.
      * @returns Exits if the number of cards passed in + the number of cards on hand exceeds 13
      */
-    addCards(cards) {
+    addCards(cards, eventHandler = null) {
         if (cards.length + this.getCards() > this.MAX_CARDS_ON_HAND) return; // Don't allow more than 13 cards on hand
 
         cards.forEach((cid) => {
             const card = document.createElement("card-t");
             card.className = `card w3-ripple w3-hover-shadow w3-round-large`;
             card.setAttribute("cid", cid);
+            card.addEventListener("click", eventHandler, false);
             this.container.appendChild(card);
         });
+
+        this.updateNrOfCards(); // Makes sure CSS size matches the amount of cards on hand
     }
 
     /**
@@ -46,6 +49,7 @@ export class Hand {
      */
     removeCard(cardElement) {
         cardElement.remove();
+        this.updateNrOfCards(); // Makes sure CSS size matches the amount of cards on hand
     }
 
     /**
@@ -53,7 +57,7 @@ export class Hand {
      */
     removeAllCards() {
         while (this.container.firstChild) {
-            this.container.removeChild(this.container.firstChild);
+            this.removeCard(this.container.firstChild);
         }
     }
 
@@ -90,7 +94,7 @@ export class Hand {
     /**
      * Sets the size of the hand relative to the default card size from hand.css
      * @param {int} ratio Takes a number > 0 and scales the hand with regards to the default width.
-     * Ratio = 2 is twice the default width and 0.5 is half. 
+     * Ratio = 2 is twice the default width and 0.5 is half.
      */
     size(ratio) {
         if (ratio < 0) return; // Exit if ratio is below zero
