@@ -3,7 +3,10 @@ import { OpponentHand } from "./modules/OpponentHand.js";
 import { TableCards } from "./modules/TableCards.js";
 
 const mockCards = ["3h", "4c", "5d", "6s", "7h", "8c", "9d", "10s", "Jh", "Qc", "Kd", "As", "2h"];
-let player = new PlayerHand(mockCards);
+const mockBacksideCards = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
+
+let player = new PlayerHand("player-hand-container", mockCards);
+
 
 /**
  * Remove cards left on hand (if any) and add new cards

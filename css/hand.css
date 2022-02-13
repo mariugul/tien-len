@@ -1,0 +1,129 @@
+/* The container around a hand for positioning the hand on the screen */
+.hand-container {
+    /* The hand size variable is meant to make scaling more intuitive with a ratio. */
+    /* This is mostly useful to adjust the ratio of opponent hands to the player hand */
+    /* as the player hand is the most important and biggest one. The value is relative */
+    /* to the --card-default-width meaning 0.5 is half the size and 2 is twice the size. */
+    --hand-size: 1;
+    /* Needs to be update by JS to match amount of cards on hand for sizing to be correct */
+    --nr-of-cards: 5;
+    
+    /* Adjust gap between player-cards */
+    --card-spacing-ratio: 3.75;
+    
+    /* Adjust selected card height */
+    --raise-card-on-click-ratio: 2.7;
+    
+    /* Internal calculation, generally don't modify these     */
+    /* ****************************************************** */
+    position: relative;
+
+    /* Card width does set the size of the entire hand as well */
+    /* but this is the default value and --hand-size is used to adjust further */
+    --card-default-width: 150px;
+    --card-width: calc(var(--card-default-width) * var(--hand-size));
+
+    /* Calculates the spacing between the player cards */
+    --card-spacing: calc(var(--card-width) / var(--card-spacing-ratio));
+
+    /* Calculates how much a selected height ratio will be in px to raise a card that was selected */
+    --raise-card-on-click: calc(
+        var(--card-width) / var(--raise-card-on-click-ratio)
+    );
+
+    /* Calculated the width of the container like this: */
+    /* (nr of cards - 1 ) * card spacing = width of all overlapping cards */
+    /* Overlapping cards + 1 card width = the entire width of the hand-container */
+    /* Because the elements are absolute an offset was necessary to perfectly adjust */
+    --width-offset: 3px;
+    width: calc(
+        (var(--nr-of-cards) - 1) * var(--card-spacing) + var(--card-width) +
+            var(--width-offset)
+    );
+
+    /* This is the ratio between a playing-card's width and height */
+    --width-height-ratio: 1.42;
+    --card-height: calc(var(--card-width) * var(--width-height-ratio));
+    height: var(--card-height);
+
+    /* Debug Container Size */
+    /* border: 3px solid rgb(255, 0, 0); */
+}
+
+/* The class applied directly to "card-t" */
+.card {
+    position: absolute;
+    width: var(--card-width);
+    cursor: pointer;
+    
+    /* Initial value for all cards so they can be raised by clicking */
+    bottom: 0; 
+
+    /* Debug */
+    /* border: 2px solid yellow; */
+}
+
+/* nth-child's specify how to layer the cards with the z-index */
+.card:nth-child(1) {
+    z-index: 1;
+}
+
+.card:nth-child(2) {
+    z-index: 2;
+    left: var(--card-spacing);
+}
+
+.card:nth-child(3) {
+    z-index: 3;
+    left: calc(var(--card-spacing) * 2);
+}
+
+.card:nth-child(4) {
+    z-index: 4;
+    left: calc(var(--card-spacing) * 3);
+}
+
+.card:nth-child(5) {
+    z-index: 5;
+    left: calc(var(--card-spacing) * 4);
+}
+
+.card:nth-child(6) {
+    z-index: 6;
+    left: calc(var(--card-spacing) * 5);
+}
+
+.card:nth-child(7) {
+    z-index: 7;
+    left: calc(var(--card-spacing) * 6);
+}
+
+.card:nth-child(8) {
+    z-index: 8;
+    left: calc(var(--card-spacing) * 7);
+}
+
+.card:nth-child(9) {
+    z-index: 9;
+    left: calc(var(--card-spacing) * 8);
+}
+
+.card:nth-child(10) {
+    z-index: 10;
+    left: calc(var(--card-spacing) * 9);
+}
+
+.card:nth-child(11) {
+    z-index: 11;
+    left: calc(var(--card-spacing) * 10);
+}
+
+.card:nth-child(12) {
+    z-index: 12;
+    left: calc(var(--card-spacing) * 11);
+}
+
+.card:nth-child(13) {
+    z-index: 13;
+    left: calc(var(--card-spacing) * 12);
+}

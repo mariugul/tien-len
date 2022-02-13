@@ -1,14 +1,10 @@
 /**
  * Super class for all hands (player and opponent)
- * @param {string} name Takes the name of the hand e.g. "player", which makes "player-hand-container" etc.
+ * @param {string} id Takes the id of the hand e.g. "player-hand-container"
  */
 export class Hand {
-    constructor(name) {
-        this.name = name;
-        this.cardClassName = `${name}-card`;
-        this.containerClassName = `${name}-hand-container`;
-        this.cardContainerClassName = `${name}-card-container`;
-        this.container = document.getElementById(this.containerClassName);
+    constructor(id) {
+        this.container = document.getElementById(id);
     }
 
     // Constants
@@ -16,23 +12,10 @@ export class Hand {
     MIN_CARDS_ON_HAND = 0;
 
     // Variables
-    name;
     container;
-    cardClassName;
-    containerClassName;
-    cardContainerClassName;
 
     // API
     // ----------------------------------------------------------------
-
-    /**
-     * Gets all the card containers as an HTML element
-     * @returns {HTMLelement} Card containers - The wrap around each "card-t" element
-     */
-    getCardContainers() {
-        return this.container.getElementsByClassName(this.containerClassName);
-    }
-
     /**
      * Gets all the card elements as HTML element
      * @returns {HTMLelement} Card elements "card-t"
@@ -50,19 +33,19 @@ export class Hand {
         if (cards.length + this.getCards() > this.MAX_CARDS_ON_HAND) return; // Don't allow more than 13 cards on hand
 
         cards.forEach((cid) => {
-            const cardContainer = document.createElement("div");
-            cardContainer.className = `${this.cardContainerClassName} w3-ripple w3-hover-shadow w3-round-large`;
-            cardContainer.innerHTML = `<card-t class="${this.cardClassName}" cid="${cid}"></card-t>`;
-            this.container.appendChild(cardContainer);
+            const card = document.createElement("card-t");
+            card.className = `card w3-ripple w3-hover-shadow w3-round-large`;
+            card.setAttribute("cid", cid);
+            this.container.appendChild(card);
         });
     }
 
     /**
      * Remove one card from hand
-     * @param {HTMLelement} cardContainer Card containers - The wrap around each "card-t" element
+     * @param {HTMLelement} cardElement "card-t" elements
      */
-    removeCard(cardContainer) {
-        cardContainer.remove();
+    removeCard(cardElement) {
+        cardElement.remove();
     }
 
     /**
@@ -101,7 +84,24 @@ export class Hand {
      * must be updated for the hand container to resize.
      */
     updateNrOfCards() {
-        const root = document.documentElement;
-        root.style.setProperty("--nr-of-cards-on-hand", this.getNrOfCards());
+        this.container.style.setProperty("--nr-of-cards", this.getNrOfCards());
+    }
+
+    /**
+     * Sets the size of the hand relative to the default card size from hand.css
+     * @param {int} ratio Takes a number > 0 and scales the hand with regards to the default width.
+     * Ratio = 2 is twice the default width and 0.5 is half. 
+     */
+    size(ratio) {
+        if (ratio < 0) return; // Exit if ratio is below zero
+        this.container.style.setProperty("--hand-size", ratio);
+    }
+
+    /**
+     * Rotates the hand
+     * @param {int} degrees The amount of degrees to rotate the hand
+     */
+    rotate(degrees) {
+        this.container.style.transform = `rotate(${degrees}deg)`;
     }
 }
