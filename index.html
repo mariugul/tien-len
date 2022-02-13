@@ -8,41 +8,60 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/hand.css">
+    <!-- <link rel="stylesheet" href="/css/grid.css"> -->
     <script src="lib/elements.cardmeister.full.js"></script>
     <script type="module" src="js/main.js"></script>
     <title>Document</title>
     <style>
-
+        .buttons {
+            margin: 30px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="w3-display-middle" style="bottom: 0px;">
-        <button id="pass-button" class="w3-button w3-ripple w3-red w3-round-large w3-hover-pale-red">Pass</button>
-        <button id="deal-button" class="w3-button w3-ripple w3-green w3-round-large w3-hover-pale-green">Deal</button>
-        <button id="play-button" class="w3-button w3-ripple w3-blue w3-round-large w3-hover-light-blue">Play</button>
-    </div>
-    <!-- Player Hand -->
-    <div class="w3-display-bottommiddle">
-        <div class="hand-container" id="player-hand-container">
-
+    <!-- Buttons  -->
+    <div class="w3-display-bottommiddle" style="margin-left: 390px; margin-bottom: 40px;">
+        <div class="buttons">
+            <button id="play-button"
+                class="w3-button w3-ripple w3-green w3-round-large w3-hover-pale-green">Play</button>
+        </div>
+        <div class="buttons">
+            <button id="pass-button" class="w3-button w3-ripple w3-red w3-round-large w3-hover-pale-red">Pass</button>
         </div>
     </div>
-    
-    <!-- Opponents -->
-    <div class="hand-container" id="opponent1-hand-container">
+
+    <div class="buttons w3-display-middle" style="margin-top: -140px;">
+        <button id="deal-button" class="w3-button w3-ripple w3-blue w3-round-large w3-hover-pale-blue">Deal</button>
     </div>
 
-    <div class="hand-container" id="opponent2-hand-container">
+    <!-- Player Hand -->
+    <div class="w3-display-bottommiddle" style="bottom: 20px">
+        <div class="hand-container" id="player-hand-container">
+        </div>
+    </div>
+
+    <!-- Opponent Hands -->
+    <div class="w3-display-left" style="display: block">
+        <div class="hand-container" id="opponent1-hand-container">
+        </div>
+    </div>
+
+    <div class="w3-display-topmiddle" style="top: 20px">
+        <div class="hand-container " id="opponent2-hand-container">
+        </div>
+    </div>
+
+    <div class="w3-display-right" style="display: block">
+        <div class="hand-container " id="opponent3-hand-container">
+        </div>
     </div>
 
     <!-- Cards on table -->
     <div class="w3-display-middle">
-        <div class="hand-container" id="table-cards-container">
+        <div class="hand-container " id="table-cards-container">
         </div>
     </div>
-
-
 
 
 </body>
