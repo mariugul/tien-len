@@ -1,0 +1,47 @@
+.player {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    min-width: max-content;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    /* background-color: #444444; */
+    color: white;
+}
+
+.player img {
+    /* float: left;
+    margin: 0 10px 0 -25px; */
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.opponent-left-chip {
+    margin-left: 5%;
+    margin-top: -280px;
+}
+
+.opponent-top-chip {
+    margin-top: 4%;
+    margin-left: -210px;
+}
+
+.opponent-right-chip {
+    margin-right: 5%;
+    margin-top: -280px;
+}
+
+.player-chip {
+    margin-bottom: 60px;
+    margin-left: -320px;
+}
+
+/* Align text in center for all chips */
+.opponent-left-chip,
+.opponent-right-chip,
+.opponent-top-chip,
+.player-chip > div {
+  text-align: center;
+}

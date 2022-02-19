@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/css/hand.css">
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/progress-bar.css">
-    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/player.css">
     <!-- W3.CSS Framework -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -132,43 +131,39 @@
     <button id="deal-button"
         class="w3-button w3-display-middle w3-ripple w3-blue w3-round-large w3-hover-pale-blue">Deal</button>
 
-    <!-- Players -->
-    <!-- <div class="player w3-display-bottomleft" style="margin-bottom: 120px; margin-left: 35px;">
-        <img src="/images/avatar.png" alt="Person" width="96" height="96">
-        Khoa
-    </div>
-
-    <div class="player w3-display-bottomright" style="margin-bottom: 120px; margin-right: 35px;">
-        <img src="/images/avatar.png" alt="Person" width="96" height="96">
-        Phi
-    </div>
-
-    <div class="player w3-display-topmiddle" style="margin-top: 60px;">
-        <img src="/images/avatar.png" alt="Person" width="96" height="96">
-        Sid
-    </div>
-
-    <div class="player w3-display-bottomright">
-        <img src="/images/avatar.png" alt="Person" width="96" height="96">
-        Marius
-    </div> -->
-
-    <!-- <div class="hand-container " id="table-cards-container"> -->
-    <!-- </div> -->
-    <!-- </div> -->
-
-    <!-- Rotate debug -->
-    <!-- <div class="w3-display-middle" style="background-color: red; max-width: 300px; width: 300px; max-height: 180px; height: 180px; border: 1px solid black;">
-        <div
-            style="background-color: red; width: 50px; height: 50px; border: 5px solid black; margin:auto;">
+    <!-- Player Chips -->
+    <!-- ------------ -->
+    <!-- Opponent Left -->
+    <div class="player opponent-left-chip w3-display-left" id="opponent-left-chip">
+        <img src="/images/avatar.png" alt="Person">
+        <div>
+            Khoa
         </div>
     </div>
-    <div class="w3-display-middle" style="background-color: blueviolet; max-width: 300px; width: 300px;max-height: 180px; height: 180px; border: 1px solid black;
-        transform: rotate(90deg); transform-origin: center 0;">
-    </div> -->
 
+    <!-- Opponent Right -->
+    <div class="player opponent-right-chip w3-display-right" id="opponent-right-chip">
+        <img src="/images/avatar.png" alt="Person">
+        <div>
+            Phi
+        </div>
+    </div>
 
+    <!-- Opponent Top -->
+    <div class="player opponent-top-chip w3-display-topmiddle" id="opponent-top-chip">
+        <img src="/images/avatar.png" alt="Person">
+        <div>
+            Sidhath
+        </div>
+    </div>
 
+    <!-- Player  -->
+    <div class="player player-chip w3-display-bottommiddle" id="player-chip">
+        <img src="/images/avatar.png" alt="Person">
+        <div>
+            Marius
+        </div>
+    </div>
 </body>
 
 </html>
