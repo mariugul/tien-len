@@ -20,11 +20,12 @@ export class PlayerHand extends Hand {
 
     // To raise the card more or less, adjust raise-ratio in css
     raiseCard(cardElement) {
-        cardElement.style.bottom = "var(--raise-card-on-click)";
+        cardElement.style.transform =
+            "translate(0px, calc(var(--raise-card-on-click) * -1))";
     }
 
     lowerCard(cardElement) {
-        cardElement.style.bottom = null;
+        cardElement.style.transform = "none";
     }
 
     // Add the selected card to array

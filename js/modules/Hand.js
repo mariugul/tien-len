@@ -27,23 +27,26 @@ export class Hand {
     /**
      *
      * @param {Array} cards Array of card ID's (cid) in the form of "As", "Kh", "2c" etc.
+     * @param {string} backText Text that will show on the backside of the card
+     * @param {int} raiseTransitionTime Transition time for a card that is selected to be raised.
      * @returns Exits if the number of cards passed in + the number of cards on hand exceeds 13
      */
-    addCards(cards, eventHandler = null) {
+    addCards(cards, eventHandler = null, backText=" ", raiseTransitionTime=1) {
         if (cards.length + this.getCards() > this.MAX_CARDS_ON_HAND) return; // Don't allow more than 13 cards on hand
 
         cards.forEach((cid) => {
             const card = document.createElement("card-t");
-
+            card.style.transition = `transform ${raiseTransitionTime}s ease`;
             // No click handler passed in means no selection of cards
             if (eventHandler === null) {
                 card.className = `card w3-round-large`;
             } else {
-                card.className = `card w3-ripple w3-hover-shadow w3-round-large`;
+                card.className = `card w3-hover-shadow w3-round-large`;
                 card.style.cursor = "pointer";
             }
             
             card.setAttribute("cid", cid);
+            card.setAttribute("backtext", backText);
             card.addEventListener("click", eventHandler, false);
             this.container.appendChild(card);
         });
@@ -115,5 +118,19 @@ export class Hand {
      */
     rotate(degrees) {
         this.container.style.transform = `rotate(${degrees}deg)`;
+    }
+
+    /**
+     * Displays the hand if it was hidden.
+     */
+    show() {
+        this.container.style.display = "block";
+    }
+
+    /**
+     * Hides the hand by setting display to none
+     */
+    hide() {
+        this.container.style.display = "none";
     }
 }

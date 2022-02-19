@@ -36,28 +36,31 @@
     /* Overlapping cards + 1 card width = the entire width of the hand-container */
     /* Because the elements are absolute an offset was necessary to perfectly adjust */
     --width-offset: 3px;
-    width: calc(
+    --container-width: calc(
         (var(--nr-of-cards) - 1) * var(--card-spacing) + var(--card-width) +
             var(--width-offset)
     );
-
+    width: var(--container-width);
+    
     /* This is the ratio between a playing-card's width and height */
     --width-height-ratio: 1.42;
     --card-height: calc(var(--card-width) * var(--width-height-ratio));
     height: var(--card-height);
 
+
     /* Debug Container Size */
     /* border: 3px solid rgb(255, 0, 0); */
+    /* background-color: red; */
+    /* transition: width 0.5s ease; */
+    /* justify-content: center; */
+    /* text-align: center; */
+
 }
 
 /* The class applied directly to "card-t" */
 .card {
     position: absolute;
     width: var(--card-width);
-    /* cursor: pointer; */
-
-    /* Initial value for all cards so they can be raised by clicking */
-    bottom: 0;
 
     /* Debug */
     /* border: 2px solid yellow; */
@@ -71,7 +74,6 @@
 .card:nth-child(2) {
     z-index: 2;
     left: var(--card-spacing);
-
 }
 
 .card:nth-child(3) {
@@ -82,7 +84,6 @@
 .card:nth-child(4) {
     z-index: 4;
     left: calc(var(--card-spacing) * 3);
-
 }
 
 .card:nth-child(5) {
@@ -98,37 +99,31 @@
 .card:nth-child(7) {
     z-index: 7;
     left: calc(var(--card-spacing) * 6);
-
 }
 
 .card:nth-child(8) {
     z-index: 8;
     left: calc(var(--card-spacing) * 7);
-
 }
 
 .card:nth-child(9) {
     z-index: 9;
     left: calc(var(--card-spacing) * 8);
-
 }
 
 .card:nth-child(10) {
     z-index: 10;
     left: calc(var(--card-spacing) * 9);
-
 }
 
 .card:nth-child(11) {
     z-index: 11;
     left: calc(var(--card-spacing) * 10);
-
 }
 
 .card:nth-child(12) {
     z-index: 12;
     left: calc(var(--card-spacing) * 11);
-
 }
 
 .card:nth-child(13) {
