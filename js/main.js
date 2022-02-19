@@ -56,9 +56,9 @@ opponentTop.hide();
 tableCards.hide();
 
 // Test opponent select cards
-opponentLeft.raiseCard(opponentLeft.getCardElements()[5]);
-opponentTop.raiseCard(opponentTop.getCardElements()[5]);
-opponentRight.raiseCard(opponentRight.getCardElements()[5]);
+// opponentLeft.raiseCard(opponentLeft.getCardElements()[5]);
+// opponentTop.raiseCard(opponentTop.getCardElements()[5]);
+// opponentRight.raiseCard(opponentRight.getCardElements()[5]);
 
 // Progress bar
 const progressBar = new ProgressBar();

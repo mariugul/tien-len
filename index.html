@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/progress-bar.css">
     <link rel="stylesheet" href="css/player.css">
+    <link rel="stylesheet" href="css/buttons.css">
     <!-- W3.CSS Framework -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -26,46 +27,7 @@
     <script src="lib/elements.cardmeister.full.js"></script>
 
     <style>
-        /* Play and Pass buttons container */
-        .player-buttons {
-            margin-left: 320px;
-            margin-bottom: 50px;
-        }
-
-        .play-button,
-        .pass-button {
-            margin: 15px;
-        }
-
-        .opponent-left,
-        .opponent-right {
-            position: fixed;
-            /* background-color: aqua; */
-            top: 0;
-            bottom: 0;
-            min-height: fit-content;
-            min-width: fit-content;
-            max-width: fit-content;
-            max-height: fit-content;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        .opponent-left {
-            left: 0;
-            transform-origin: 0 0;
-            margin-left: 5%;
-            transform: rotate(-90deg) translate(-50%, 0);
-        }
-
-        .opponent-right {
-            right: 0%;
-            left: 95%;
-            transform-origin: 0 0;
-            margin-right: 5%;
-            transform: rotate(90deg) translate(-50%, 0);
-        }
-
+        /* For some reason this won't work in external CSS??? */
         .opponent-top {
             top: 5%;
             max-width: fit-content;
@@ -123,7 +85,7 @@
                 class="w3-button w3-ripple w3-green w3-round-large w3-hover-pale-green">Play</button>
         </div>
         <div class="pass-button">
-            <button id="pass-button" class="w3-button w3-ripple w3-red w3-round-large w3-hover-pale-red">Pass</button>
+            <button id="pass-button" class="w3-button w3-ripple w3-deep-orange w3-round-large w3-hover-pale-red">Pass</button>
         </div>
     </div>
 

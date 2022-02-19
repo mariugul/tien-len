@@ -1,0 +1,10 @@
+/* Play and Pass buttons container */
+.player-buttons {
+    margin-left: 320px;
+    margin-bottom: 50px;
+}
+
+.play-button,
+.pass-button {
+    margin: 15px;
+}
