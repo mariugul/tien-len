@@ -1,23 +1,19 @@
 .player {
-    display: inline-block;
-    padding: 0 25px;
-    height: 50px;
-    min-width: max-content;
-    font-size: 16px;
-    line-height: 50px;
-    border-radius: 25px;
-    /* background-color: #444444; */
-    color: white;
+    background-color: transparent;
 }
 
 .player img {
-    /* float: left;
-    margin: 0 10px 0 -25px; */
     height: 50px;
     width: 50px;
     border-radius: 50%;
 }
 
+.player div {
+    font-size: 16px;
+    color: white;
+}
+
+/* Chips */
 .opponent-left-chip {
     margin-left: 5%;
     margin-top: -280px;
@@ -43,5 +39,22 @@
 .opponent-right-chip,
 .opponent-top-chip,
 .player-chip > div {
-  text-align: center;
+    text-align: center;
+}
+
+/* Set shadow on images */
+.opponent-left-chip,
+.opponent-right-chip,
+.opponent-top-chip,
+.player-chip > img {
+}
+
+/* Highlight Name */
+.player-chip > div {
+    /* color: yellow; */
+}
+
+/* Highlight image */
+.player-chip > img {
+    border: solid 3px yellow;
 }
