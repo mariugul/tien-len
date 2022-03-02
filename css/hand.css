@@ -41,12 +41,11 @@
             var(--width-offset)
     );
     width: var(--container-width);
-    
+
     /* This is the ratio between a playing-card's width and height */
     --width-height-ratio: 1.42;
     --card-height: calc(var(--card-width) * var(--width-height-ratio));
     height: var(--card-height);
-
 
     /* Debug Container Size */
     /* border: 3px solid rgb(255, 0, 0); */
@@ -54,7 +53,6 @@
     /* transition: width 0.5s ease; */
     /* justify-content: center; */
     /* text-align: center; */
-
 }
 
 /* The class applied directly to "card-t" */

@@ -3,16 +3,16 @@ import { Hand } from "./Hand.js";
 /**
  * Holds functionality for a player-hand where the cards are shown to the player
  * and can be clicked for selection.
- * @param {string} id Takes the id of the hand e.g. "player-hand-container"
- * @param {Array} cards Takes an array of card id's in the form of "As", "Kh" up to 13 cards.
- * Empty array means no cards, empty values are blanc cards and "00" means backside of card.
+ * @param {string} id Takes the id of the hand e.g. "player-hand-container" as a string
+ * @param {Array} cards Takes an array of card id's in the form of "As", "Kh" up to 13 cards
+ * Empty array means no cards, empty values are blanc cards and "00" means backside of card
  * @param {function} cardClickHandler Takes a function to add as an event handler for card clicks
  * @extends {Hand}
  */
 export class PlayerHand extends Hand {
-    constructor(id, cards = [], cardClickHandler = null) {
+    constructor(id, cards = [], isClickable = false) {
         super(id);
-        this.addCards(cards, cardClickHandler);
+        this.addCards(cards, isClickable);
         this.updateNrOfCards();
     }
 

@@ -14,10 +14,13 @@
     <link rel="stylesheet" href="/css/hand.css">
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/progress-bar.css">
-    <link rel="stylesheet" href="css/player.css">
-    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="/css/player.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" href="/css/deck.css">
+    <!-- For offline W3.css framework development -->
+    <link rel="stylesheet" href="css/w3.css">
     <!-- W3.CSS Framework -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
     <!-- JS -->
     <!-- ------------------------------------- -->
@@ -66,32 +69,62 @@
     <!-- -------------- -->
     <!-- Progress bar -->
     <div class="progress-bar w3-light-grey w3-display-middle" id="progress-bar">
-        <div class="progress w3-container w3-center"></div>
-        <div class="progress-count w3-text-white"></div>
+        <div class="progress w3-container w3-center" id="progress"></div>
     </div>
 
-    <!-- Cards on table -->
+    <!-- Cards in play -->
     <div class="w3-display-middle">
         <div class="hand-container " id="table-cards-container">
         </div>
     </div>
 
+    <!-- Card deck -->
+    <div class="w3-display-middle w3-hover-shadow w3-round-large">
+        <div class="hand-container deck" id="deck-container"></div>
+    </div>
+
+    <!-- Sit at table left side -->
+    <!-- <div class="w3-display-left">
+        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-left: 20px; background-color: lightblue;">
+        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-left: 20px;">Sit</button>
+    </div> -->
+
+    <!-- Sit at table right side -->
+    <!-- <div class="w3-display-right">
+        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-right: 20px; background-color: lightblue;">
+        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px;">Sit</button>
+    </div> -->
+
+    <!-- Sit at table top side -->
+    <!-- <div class="w3-display-topmiddle">
+        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-top: 20px; background-color: lightblue;">
+        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px;">Sit</button>
+    </div> -->
+
+    <!-- Sit at table player side -->
+    <!-- <div class="w3-display-bottommiddle">
+        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; background-color: lightblue;">
+        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px; margin-bottom: 20px;">Sit</button>
+    </div> -->
+
     <!-- Buttons -->
     <!-- ------- -->
     <!-- Play/Pass Buttons  -->
-    <div class="player-buttons w3-display-bottommiddle">
+    <div class="player-buttons w3-display-bottommiddle" id="player-buttons">
         <div class="play-button">
             <button id="play-button"
                 class="w3-button w3-ripple w3-green w3-round-large w3-hover-pale-green">Play</button>
         </div>
         <div class="pass-button">
-            <button id="pass-button" class="w3-button w3-ripple w3-deep-orange w3-round-large w3-hover-pale-red">Pass</button>
+            <button id="pass-button"
+                class="w3-button w3-ripple w3-deep-orange w3-round-large w3-hover-pale-red">Pass</button>
         </div>
     </div>
 
-    <!-- Deal button -->
-    <button id="deal-button"
-        class="w3-button w3-display-middle w3-ripple w3-blue w3-round-large w3-hover-pale-blue">Deal</button>
+    <!-- Deal button NB! This button is deprecated because the DECK is used as a button -->
+    <!-- Keeping this for now for reference if I should go back on this decision. -->
+    <!-- <button id="deal-button"
+        class="w3-button w3-display-middle w3-ripple w3-blue w3-round-large w3-hover-pale-blue">Deal</button> -->
 
     <!-- Player Chips -->
     <!-- ------------ -->
@@ -128,6 +161,11 @@
             Marius
         </div>
     </div>
+
+    <!-- Debug -->
+    <!-- <div class="w3-button w3-display-middle w3-blue" id="debug-progress">
+        Progress
+    </div> -->
 </body>
 
 </html>

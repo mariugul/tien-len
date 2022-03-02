@@ -10,28 +10,10 @@
 
 /* The progress graphic that moves */
 .progress {
-    /* Animation */
-    --amount-of-players: 4; /* Sets how many times to run animation */
-    animation: progress 30s linear var(--amount-of-players);
-    animation-delay: 5s; /* Sets a delay to give players time to see the cards */
-
     /* Styling */
+    background-color: green;
     border: 0.5px solid gray;
     border-radius: 20px;
     height: 100%;
     transform-origin: 0%;
-}
-
-@keyframes progress {
-    0% {
-        transform: scaleX(100%);
-        background-color: green;
-    }
-    40% {
-        background-color: yellow;
-    }
-    100% {
-        transform: scaleX(0);
-        background-color: red;
-    }
 }

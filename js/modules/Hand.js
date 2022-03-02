@@ -17,6 +17,14 @@ export class Hand {
     // API
     // ----------------------------------------------------------------
     /**
+     * Gets the container object.
+     * @returns Container object
+     */
+    getContainerObject() {
+        return this.container;
+    }
+
+    /**
      * Gets all the card elements as HTML element
      * @returns {HTMLelement} Card elements "card-t"
      */
@@ -25,29 +33,61 @@ export class Hand {
     }
 
     /**
+     * Event handler for clicks on player-cards
+     * @param {HTMLelement} card card-t HTML element
+     */
+     #clickCard(card) {
+        const LOWERED = 0;
+        let cardHeight = LOWERED;
+        const transform = card.style.transform.match(/\d+/g); // Get X and Y coordinate
+        if (transform !== null) cardHeight = transform["1"]; // Get the Y coordinate
+
+        if (cardHeight === LOWERED) {
+            this.raiseCard(card);
+            this.selectCard(card.cid);
+            this.addCardShadow(card);
+        } else {
+            this.lowerCard(card);
+            this.deselectCard(card.cid);
+            this.removeCardShadow(card);
+        }
+    }
+
+    /**
      *
      * @param {Array} cards Array of card ID's (cid) in the form of "As", "Kh", "2c" etc.
-     * @param {string} backText Text that will show on the backside of the card
-     * @param {int} raiseTransitionTime Transition time for a card that is selected to be raised.
+     * @param {boolean} isClickable If set to true, the cards get a clickHandler to raise/lower the cards. Defaults to false
+     * @param {string} backText Text that will show on the backside of the card. Defaults to empty text
+     * @param {int} raiseTransitionTime Transition time for a card that is selected to be raised. Defaults to 1s
      * @returns Exits if the number of cards passed in + the number of cards on hand exceeds 13
      */
-    addCards(cards, eventHandler = null, backText=" ", raiseTransitionTime=1) {
+    addCards(
+        cards,
+        isClickable = false,
+        backText = " ",
+        raiseTransitionTime = 1
+    ) {
         if (cards.length + this.getCards() > this.MAX_CARDS_ON_HAND) return; // Don't allow more than 13 cards on hand
 
         cards.forEach((cid) => {
             const card = document.createElement("card-t");
-            card.style.transition = `transform ${raiseTransitionTime}s ease`;
+
+            // Only set transitions if a raiseTransitionTime value is passed or not passed.
+            // On passing of the value "null" we don't want transitions.
+            if (raiseTransitionTime !== null)
+                card.style.transition = `transform ${raiseTransitionTime}s ease`;
+
             // No click handler passed in means no selection of cards
-            if (eventHandler === null) {
+            if (!isClickable) {
                 card.className = `card w3-round-large`;
             } else {
                 card.className = `card w3-hover-shadow w3-round-large`;
                 card.style.cursor = "pointer";
+                card.addEventListener("click", () => this.#clickCard.call(this, card), false);
             }
-            
+
             card.setAttribute("cid", cid);
             card.setAttribute("backtext", backText);
-            card.addEventListener("click", eventHandler, false);
             this.container.appendChild(card);
         });
 
@@ -132,5 +172,40 @@ export class Hand {
      */
     hide() {
         this.container.style.display = "none";
+    }
+
+    /**
+     * Sets the space between the cards
+     * @param {int} ratio The ratio of space between the cards with regards to hand size.
+     * An integer >1 means smaller gap between the cards and 0 < ratio < 1 means bigger gap.
+     * Passing "2" is half the size and "0.5" is twice the size. If <=0 or null is passed the default value is used.
+     */
+    cardSpacing(ratio) {
+        if (ratio <= 0 || ratio === null) return;
+
+        // Research how to get property value of --card-spacing-ratio
+        // Set default ratio to --card-spacing-ratio, for now it's hard coded
+        const defaultRatio = 3.75;
+        this.container.style.setProperty(
+            "--card-spacing-ratio",
+            defaultRatio * ratio
+        );
+    }
+
+    /**
+     * Adds an event listener to the entire hand. Useful if there is no
+     * event listener on the individual cards and you would like the same listener on all of them.
+     * @param {function} func Event handler function.
+     */
+    addEventHandler(func) {
+        this.container.addEventListener("click", func);
+    }
+
+    /**
+     * Gets the style property so styles can be applied with the syntax: this.style().display = "none"
+     * @returns style property of the container
+     */
+    style() {
+        return this.container.style;
     }
 }
