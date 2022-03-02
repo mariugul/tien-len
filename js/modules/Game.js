@@ -1,5 +1,4 @@
 import { PlayerHand } from "./PlayerHand.js";
-import { ProgressBar } from "./ProgressBar.js";
 import { Deck } from "./Deck.js";
 
 /**
