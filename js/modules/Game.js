@@ -1,5 +1,6 @@
-import { PlayerHand } from "./PlayerHand.js";
+import { Hand } from "./Hand.js";
 import { Deck } from "./Deck.js";
+import { Player } from "./Player.js"
 
 /**
  *
@@ -16,11 +17,11 @@ export class Game {
         
         // Create all players and the table
         // this.#createPlayers();
-        this.table = new PlayerHand("table-cards-container", this.cards);
-        this.player1 = new PlayerHand("player-hand-container", this.cards, true);
-        this.player2 = new PlayerHand("opponent-left-hand-container", this.backsideCards);
-        this.player3 = new PlayerHand("opponent-top-hand-container", this.backsideCards);
-        this.player4 = new PlayerHand("opponent-right-hand-container", this.backsideCards);
+        this.table = new Player("table-cards-container", this.cards);
+        this.player1 = new Player("player-hand-container", this.cards, true);
+        this.player2 = new Player("opponent-left-hand-container", this.backsideCards);
+        this.player3 = new Player("opponent-top-hand-container", this.backsideCards);
+        this.player4 = new Player("opponent-right-hand-container", this.backsideCards);
 
         // Set up of hands
         const OPPONENTS_SIZE = 0.5;
@@ -86,7 +87,6 @@ export class Game {
 
     // Need to call this with "this" as the class object and not the clicked object
     #dealCards() {
-        console.log(this);
         this.player1.clearSelectedCards();
         this.player1.removeAllCards(); 
         this.player1.addCards(this.cards, true);
