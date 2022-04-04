@@ -11,13 +11,14 @@ export class Game {
         this.playersInRound = 4; // Players currently playing in the round (players who have not passed)
         this.thinkTimeMs = 1000; // Time to think for each player
         this.delayedStart = 0; // A delayed start for the first round to get an overview of cards. This happens again if the animation is cancelled.
+        this.currentPlayerTurn; // The player that is currently allowed to put cards on the table
 
         this.cards = ["3h","4c","5d","6s","7h","8c","9d","10s","Jh","Qc","Kd","As","2h",];
         this.backsideCards = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
         
         // Create all players and the table
         // this.#createPlayers();
-        this.table = new Player("table-cards-container", this.cards);
+        this.table = new Hand("table-cards-container", this.cards);
         this.player1 = new Player("player-hand-container", this.cards, true);
         this.player2 = new Player("opponent-left-hand-container", this.backsideCards);
         this.player3 = new Player("opponent-top-hand-container", this.backsideCards);
@@ -52,6 +53,9 @@ export class Game {
 
         this.playButton = document.getElementById("play-button");
         this.playButton.addEventListener("click", () => this.#playCards.call(this), false);
+
+        // Progress bar
+        this.progressBar = document.getElementById("progress-bar");
 
     }
 
@@ -90,8 +94,10 @@ export class Game {
         this.player1.clearSelectedCards();
         this.player1.removeAllCards(); 
         this.player1.addCards(this.cards, true);
-    
-        // progressBar.start();
+
+        this.#showProgressBar();
+        console.log(this.progressBarAnimation);
+        // this.progressBarAnimation.start();
         this.deck.hide();
     
         this.player1.show();
@@ -128,5 +134,12 @@ export class Game {
         this.progressBarAnimation.cancel();
     }
 
+    #showProgressBar() {
+        this.progressBar.style.display = "block";
+    }
+
+    #hideProgressBar() {
+        this.progressBar.style.display = "none";
+    }
 
 }
