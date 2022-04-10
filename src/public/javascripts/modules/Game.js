@@ -1,6 +1,7 @@
 import { Hand } from "./Hand.js";
 import { Deck } from "./Deck.js";
 import { Player } from "./Player.js"
+import { Network } from "./Network.js";
 
 /**
  *
@@ -56,6 +57,9 @@ export class Game {
 
         // Progress bar
         this.progressBar = document.getElementById("progress-bar");
+
+        // Init Network module
+        var io = new Network();
 
     }
 
