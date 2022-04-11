@@ -48,4 +48,18 @@ export class Deck extends Hand {
      * "Deals" the cards to the players. This is an animation of dealing the cards.
      */
     dealAnimation() {}
+
+    /**
+     * Makes the deck non-interactable so it can be shown without starting the game
+     */
+    deactivateDeck() {
+        this.container.style.pointerEvents = "none";
+    }
+
+    /**
+     * Makes the deck interactable so it can be use to start a game
+     */
+    activateDeck() {
+        this.container.style.pointerEvents = "all";
+    }
 }

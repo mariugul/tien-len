@@ -6,7 +6,6 @@ export class Network {
     constructor() {
         socket.on("connect", () => {
             console.log(`Connected to server: ${socket.id}`);
-            this.registerPlayer("Marius")
         });
 
         socket.on("disconnect", () => {

@@ -17,21 +17,25 @@
 .opponent-left-chip {
     margin-left: 5%;
     margin-top: -280px;
+    display: none;
 }
 
 .opponent-top-chip {
     margin-top: 4%;
     margin-left: -210px;
+    display: none;
 }
 
 .opponent-right-chip {
     margin-right: 5%;
     margin-top: -280px;
+    display: none;
 }
 
 .player-chip {
     margin-bottom: 60px;
     margin-left: -320px;
+    display: none;
 }
 
 /* Align text in center for all chips */

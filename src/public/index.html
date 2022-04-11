@@ -35,6 +35,11 @@
             top: 5%;
             max-width: fit-content;
         }
+
+        /* Disable interacting with the deck by default */
+        #deck-container {
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -83,29 +88,17 @@
         <div class="hand-container deck" id="deck-container"></div>
     </div>
 
-    <!-- Sit at table left side -->
-    <!-- <div class="w3-display-left">
-        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-left: 20px; background-color: lightblue;">
-        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-left: 20px;">Sit</button>
-    </div> -->
-
-    <!-- Sit at table right side -->
-    <!-- <div class="w3-display-right">
-        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-right: 20px; background-color: lightblue;">
-        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px;">Sit</button>
-    </div> -->
-
-    <!-- Sit at table top side -->
-    <!-- <div class="w3-display-topmiddle">
-        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; margin-top: 20px; background-color: lightblue;">
-        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px;">Sit</button>
-    </div> -->
-
-    <!-- Sit at table player side -->
-    <!-- <div class="w3-display-bottommiddle">
-        <input class="w3-input w3-border" type="text" placeholder="Name" style="width: 100px; background-color: lightblue;">
-        <button class="w3-button w3-ripple w3-green w3-round-large" style="margin-right: 20px; margin-bottom: 20px;">Sit</button>
-    </div> -->
+    <!-- Sit at table -->
+    <div class="w3-display-bottommiddle">
+        <div class="w3-half">
+            <input id="player-name-input" class="w3-input w3-border" type="text" placeholder="Name" minlength="1"
+                maxlength="7" required style="width: 80px; height: 40px; background-color: lightblue;">
+        </div>
+        <div class="w3-half">
+            <button id="sit-button" class="w3-button w3-ripple w3-green"
+                style="margin-right: 28px; margin-bottom: 80px; height: 40px;">Sit</button>
+        </div>
+    </div>
 
     <!-- Buttons -->
     <!-- ------- -->
@@ -124,36 +117,32 @@
     <!-- Player Chips -->
     <!-- ------------ -->
     <!-- Opponent Left -->
-    <div class="player opponent-left-chip w3-display-left" id="opponent-left-chip">
+    <div class="player opponent-left-chip w3-display-left" id="left-chip">
         <img src="/images/avatar.png" alt="Person">
-        <div>
-            Khoa
+        <div id="left-chip-name">
         </div>
     </div>
 
     <!-- Opponent Right -->
-    <div class="player opponent-right-chip w3-display-right" id="opponent-right-chip">
+    <div class="player opponent-right-chip w3-display-right" id="right-chip">
         <img src="/images/avatar.png" alt="Person">
-        <div>
-            Phi
+        <div id="right-chip-name">
         </div>
     </div>
 
     <!-- Opponent Top -->
-    <div class="player opponent-top-chip w3-display-topmiddle" id="opponent-top-chip">
+    <div class="player opponent-top-chip w3-display-topmiddle" id="top-chip">
         <img src="/images/avatar.png" alt="Person">
-        <div>
-            Sidhath
+        <div id="top-chip-name">
         </div>
     </div>
 
     <!-- Player  -->
-    <div class="player player-chip w3-display-bottommiddle" id="player-chip">
+    <div class="player player-chip w3-display-bottommiddle" id="bottom-chip">
         <div class="w3-button w3-hover-none w3-ripple">
             <img src="/images/avatar.png" alt="Person">
         </div>
-        <div>
-            Marius
+        <div id="bottom-chip-name">
         </div>
     </div>
 

@@ -3,6 +3,9 @@ import { Deck } from "./Deck.js";
 import { Player } from "./Player.js"
 import { Network } from "./Network.js";
 
+// Player names should be kept short
+const MAX_NAME_LENGTH = 7;
+
 /**
  *
  */
@@ -55,11 +58,16 @@ export class Game {
         this.playButton = document.getElementById("play-button");
         this.playButton.addEventListener("click", () => this.#playCards.call(this), false);
 
+        // Register sit at table event handler
+        this.playerNameField = document.getElementById("player-name-input");
+        this.sitTableButton = document.getElementById("sit-button");
+        this.sitTableButton.addEventListener("click", () => this.playerSitTable(this.playerNameField.value));
+
         // Progress bar
         this.progressBar = document.getElementById("progress-bar");
 
         // Init Network module
-        var io = new Network();
+        this.io = new Network();
 
     }
 
@@ -146,4 +154,67 @@ export class Game {
         this.progressBar.style.display = "none";
     }
 
+    playerSitTable(name) {
+        if (!this.validatePlayerName(name)) return; // Reject empty, null and long names
+
+        // Register the player to the server
+        this.io.registerPlayer(name);
+
+        this.hideSitTableOption();
+        this.setPlayerAvatarName("bottom", name);
+        this.showPlayerAvatar("bottom");
+    }
+
+    // Validate if a player sitting down at a table has a valid input
+    validatePlayerName(name) {
+        if (name.length <= 0 || name === null) {
+            alert("Name must be filled out");
+            return false;
+        }
+        else if (name.length > MAX_NAME_LENGTH)
+            return false;
+
+        return true;
+    }
+
+    // Hides button and input field for sitting at table
+    hideSitTableOption() {
+        let nameField = document.getElementById("player-name-input");
+        let sitButton = document.getElementById("sit-button");
+
+        nameField.style.display = "none";
+        sitButton.style.display = "none";
+    }
+
+    showSitTableOption() {
+        let nameField = document.getElementById("player-name-input");
+        let sitButton = document.getElementById("sit-button");
+
+        nameField.style.display = "block";
+        sitButton.style.display = "block";
+    }
+
+    /** Hides any player avatar with the name
+     * 
+     * @param {str} player bottom, left, right, top 
+     */
+    hidePlayerAvatar(player) {
+        let chip = document.getElementById(`${player}-chip`);
+        chip.style.display = "none";
+    }
+
+    showPlayerAvatar(player) {
+        let chip = document.getElementById(`${player}-chip`);
+        chip.style.display = "block";
+    }
+
+    /** Sets the name on a certain avatar depending on the parameter "player"
+     * 
+     * @param {str} player bottom, left, right, top 
+     * @param {str} name  Player name to set for the avatar
+     */
+    setPlayerAvatarName(player, name) {
+        let chip = document.getElementById(`${player}-chip-name`);
+        chip.innerHTML = name;
+    }
 }

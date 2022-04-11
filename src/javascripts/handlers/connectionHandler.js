@@ -4,13 +4,16 @@ module.exports = (io, socket, game) => {
 
     // Type of person = [player | spectator]
     const registerPlayer = (name) => {
-        // Register the name
+        // Register name and socket id
         game.addPlayer(name, socket.id);
 
         // Join a room (?)
         // < code >
 
-        console.log(`Player ${name} registered`);
+        // Debug feedback
+        if (game.nrOfPlayers() <= 4) {
+            console.log(`Player ${name} registered`);
+        } else console.log("Table is full.");
     }
 
     const registerSpectator = () => {

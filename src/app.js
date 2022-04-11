@@ -28,7 +28,6 @@ app.use('/users', usersRouter)
 
 // Initialize Game logic
 let game = new Game(); 
-game.addPlayer("Ana"); // Debug testing
 console.log(`${game.nrOfPlayers()} Players: ${game.getPlayers()}`)
 
 // Setup socket.io
